@@ -49,7 +49,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   caption: true,
   captionType: 'attr',
   captionPosition: 'bottom',
-  captionDelay: 250,
+  captionDelay: 350,
   captionsData: 'alt',
 });
 
