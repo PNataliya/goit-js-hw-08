@@ -20,13 +20,17 @@
 // При перезагрузке страницы воспользуйся методом setCurrentTime() для того чтобы возобновить воспроизведение с сохраненной позиции.
 // Добавь в проект бибилотеку lodash.throttle и сделай так, чтобы время воспроизведения обновлялось в хранилище не чаще чем раз в секунду.
 //==============================
-const iframe = document.querySelector('#vimeo-player');
+//import Player from '@vimeo/player';
+
+import throttle from 'lodash.throttle';
+
+const iframe = document.querySelector('iframe');
 const player = new Vimeo.Player(iframe);
 
-player.on('play', function () {
-  console.log('played the video!');
-});
+player.on('timeupdate', throttle(onPlay, 1000));
 
-player.getVideoTitle().then(function (title) {
-  console.log('title:', title);
-});
+function onPlay({ seconds }) {
+  localStorage.setItem('videoplayer-current-time', seconds);
+}
+
+player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
