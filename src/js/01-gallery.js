@@ -13,10 +13,9 @@
 // Add imports above this line
 import { galleryItems } from './gallery-items';
 // Change code below this line
-// Описан в документации
 import SimpleLightbox from 'simplelightbox';
-// Дополнительный импорт стилей
 import 'simplelightbox/dist/simple-lightbox.min.css';
+
 // получаем доступ к div где будет храниться коллекция
 const galleryContainer = document.querySelector('.gallery');
 
@@ -49,7 +48,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   caption: true,
   captionType: 'attr',
   captionPosition: 'bottom',
-  captionDelay: 350,
+  captionDelay: 250,
   captionsData: 'alt',
 });
 
