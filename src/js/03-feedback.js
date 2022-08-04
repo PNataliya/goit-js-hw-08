@@ -45,11 +45,9 @@ function onSubmitForm(e) {
   const email = document.querySelector('.feedback-form input');
   const message = document.querySelector('.feedback-form textarea');
   if (data) {
-    email.value = '';
-    message.value = '';
+    email.value = data;
+    message.value = data;
   }
 
   console.log(data);
-  console.log(email.value);
-  console.log(message.value);
 })();
