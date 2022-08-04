@@ -34,6 +34,7 @@ function onFormData(e) {
 
 function onSubmitForm(e) {
   console.log(JSON.parse(localStorage.getItem('feedback-form-state')));
+
   e.preventDefault();
   e.currentTarget.reset();
   localStorage.removeItem('feedback-form-state');
@@ -44,7 +45,11 @@ function onSubmitForm(e) {
   const email = document.querySelector('.feedback-form input');
   const message = document.querySelector('.feedback-form textarea');
   if (data) {
-    email.value = data.email;
-    message.value = data.message;
+    email.value = '';
+    message.value = '';
   }
+
+  console.log(data);
+  console.log(email.value);
+  console.log(message.value);
 })();

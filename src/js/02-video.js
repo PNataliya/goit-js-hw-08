@@ -31,6 +31,13 @@ player.on('timeupdate', throttle(onPlay, 1000));
 
 function onPlay({ seconds }) {
   localStorage.setItem('videoplayer-current-time', seconds);
+  const currentTime = localStorage.getItem('videoplayer-current-time');
+  let parsedCurrentTime = JSON.parse(currentTime);
+  if (currentTime) {
+    parsedCurrentTime = JSON.parse(currentTime);
+  } else {
+    parsedCurrentTime = 0;
+  }
 }
 
 player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
