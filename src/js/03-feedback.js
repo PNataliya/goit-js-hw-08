@@ -27,7 +27,7 @@ const form = document.querySelector('.feedback-form');
 form.addEventListener('input', throttle(onFormData, 500));
 form.addEventListener('submit', onSubmitForm);
 
-const formData = {};
+let formData = {};
 
 function onFormData(e) {
   formData[e.target.name] = e.target.value;
@@ -35,22 +35,28 @@ function onFormData(e) {
 }
 
 function onSubmitForm(e) {
-  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
-
   e.preventDefault();
-  e.currentTarget.reset();
-  localStorage.removeItem(STORAGE_KEY);
-}
 
-(function dataFromLocalStorage() {
-  let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
   const email = document.querySelector('.feedback-form input');
   const message = document.querySelector('.feedback-form textarea');
+  if (message.value === '' || email.value === '') {
+    alert(`Все поля должны быть заполнены`);
+  } else {
+    e.currentTarget.reset();
+    localStorage.removeItem(STORAGE_KEY);
+    //formData = {}; // удаляет данные после отправки
+    console.log(formData);
+  }
+}
+
+(function updateDataFromLocalStorage() {
+  let data = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
   if (data) {
-    email.value = data.email;
-    message.value = data.message;
+    Object.entries(data).forEach(([key, value]) => {
+      formData[key] = value;
+      form.elements[key].value = value;
+      //console.log(data);
+    });
   }
-
-  console.log(data);
 })();
